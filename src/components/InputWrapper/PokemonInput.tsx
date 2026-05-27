@@ -15,14 +15,17 @@ interface Types {
 interface Props {
   index: number;
   onUpdate: (index: number, types: string[]) => void;
+  fetchErr: (value: boolean) => void
 }
 
-function PokemonInput({ index, onUpdate }: Props) {
+function PokemonInput({ index, onUpdate, fetchErr }: Props) {
   const [pokemon, setPokemon] = useState("");
   const [type, setType] = useState<string[]>([]);
+  const [PMerror, setPMerror] = useState('')
 
   async function fetchPokemon(englishName: string) {
-    const response = await fetch(
+    try {
+      const response = await fetch(
       `https://pokeapi.co/api/v2/pokemon/${englishName}`,
     );
     const data = await response.json();
@@ -30,6 +33,11 @@ function PokemonInput({ index, onUpdate }: Props) {
     const handledTypes = data.types.map((value: Types) => value.type.name);
     setType(handledTypes);
     onUpdate(index, handledTypes);
+    fetchErr(true)
+    } catch {
+      fetchErr(true)
+    }
+    
   }
 
   async function handleEnter(key: string) {
@@ -37,13 +45,16 @@ function PokemonInput({ index, onUpdate }: Props) {
       if (pokemon === "") {
         onUpdate(index, []);
         setType([]);
+        setPMerror('')
         return;
       } else {
         const englishName = nameZhToEn[pokemon];
         if (englishName !== undefined) {
           await fetchPokemon(englishName);
         } else {
-          console.log("沒有這隻寶可夢");
+          onUpdate(index,[])
+          setType([])
+          setPMerror('沒有這隻寶可夢')
         }
       }
     }
@@ -69,6 +80,7 @@ function PokemonInput({ index, onUpdate }: Props) {
           })
           .join(",")}
       </span>
+      {PMerror && <p className="text-red-500 text-sm">{PMerror}</p>}
     </div>
   );
 }
