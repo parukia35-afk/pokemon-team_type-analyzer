@@ -75,6 +75,8 @@ function PokemonInput({ index, onUpdate }: Props) {
         value={pokemon}
         onChange={(e) => {
           setPokemon(e.target.value);
+          setPMerror("")
+          setInputErr(false)
         }}
         onKeyDown={(e) => {
           handleEnter(e.key);
