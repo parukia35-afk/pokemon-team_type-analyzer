@@ -1,13 +1,21 @@
-import typeNameZhTw from '../../data/typeName'
+import typeNameZhTw from "../../data/typeName";
 
-function ResultSection({ title, data }) {
-  const handledData = Object.entries(data) // [[fire,1],[water,2]]
+interface Props {
+  title: string;
+  data: Record<string, number>;
+  showCount: boolean;
+}
+
+function ResultSection({ title, data, showCount }: Props) {
+  const handledData = Object.entries(data); // [[fire,1],[water,2]]
   return (
     <div>
       <h2>{title}</h2>
-      <div>
-        {handledData.map((item)=>{
-          return <span key={item[0]}>{`${typeNameZhTw[item[0]]} ${item[1]}`}</span>
+      <div className="min-h-4">
+        {handledData.map((item) => {
+          return (
+            <span key={item[0]}>{`${typeNameZhTw[item[0]]} ${showCount?item[1]:''}`}</span>
+          );
         })}
       </div>
     </div>
