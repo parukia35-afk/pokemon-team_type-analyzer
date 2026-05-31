@@ -67,7 +67,19 @@ function PokemonInput({ index, onUpdate }: Props) {
   }
 
   return (
-    <div>
+  <div className={`rounded-xl p-3 flex items-center gap-3 border
+    ${type.length > 0
+      ? "bg-surface-high border-white/15"
+      : "bg-white/[0.02] border-white/8 border-dashed"
+    }`}>
+    
+    {/* 左側圓形圖示 */}
+    <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 text-text-muted text-base">
+      {type.length > 0 ? "◆" : "+"}
+    </div>
+
+    {/* 右側內容 */}
+    <div className="flex-1 min-w-0">
       <input
         disabled={isLoading}
         type="text"
@@ -75,28 +87,39 @@ function PokemonInput({ index, onUpdate }: Props) {
         value={pokemon}
         onChange={(e) => {
           setPokemon(e.target.value);
-          setPMerror("")
-          setInputErr(false)
+          setPMerror("");
+          setInputErr(false);
         }}
-        onKeyDown={(e) => {
-          handleEnter(e.key);
-        }}
+        onKeyDown={(e) => handleEnter(e.key)}
+        className="w-full bg-transparent border-none outline-none font-mono text-[14px] text-text-primary placeholder:text-text-muted/40 disabled:opacity-50"
       />
-      <span>
-        {isLoading
-          ? "查詢中..."
-          : type
-              .map((en) => {
-                return typeNameZhTw[en];
-              })
-              .join(",")}
-      </span>
-      {PMerror && <p className="text-red-500 text-sm">{PMerror}</p>}
-      {inputErr && (
-        <button onClick={() => fetchPokemon(lastFetchPokemon)}>重試</button>
-      )}
+      
+      {/* 狀態列：loading / 屬性 / 錯誤 */}
+      <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+        {isLoading && (
+          <span className="font-mono text-[10px] text-text-muted">查詢中...</span>
+        )}
+        {!isLoading && type.length > 0 && type.map((en) => (
+          <span key={en} className="font-mono text-[10px] text-text-muted">
+            {typeNameZhTw[en]}
+          </span>
+        ))}
+        {PMerror && (
+          <span className="font-mono text-[10px] text-red-400">{PMerror}</span>
+        )}
+        {inputErr && (
+          <button
+            onClick={() => fetchPokemon(lastFetchPokemon)}
+            className="font-mono text-[10px] text-accent underline"
+          >
+            重試
+          </button>
+        )}
+      </div>
     </div>
-  );
+
+  </div>
+);
 }
 
 export default PokemonInput;

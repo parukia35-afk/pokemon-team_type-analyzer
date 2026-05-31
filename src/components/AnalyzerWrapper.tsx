@@ -22,12 +22,9 @@ function AnalyzerWrapper() {
   const coverage = coverageTypes(teamMembers)
 
   return (
-    <div className="max-w-4xl w-full bg-lime-950">
-      <h1 className="text-3xl text-center">寶可夢隊伍屬性分析器</h1>
-      <div className="flex flex-row">
+    <div className="flex h-screen w-screen overflow-hidden">
         <InputWrapper onUpdate={updateTeamMembers}></InputWrapper>
         <OutputWrapper calcResult={calcResult} coverage={coverage}></OutputWrapper>
-      </div>
     </div>
   );
 }
