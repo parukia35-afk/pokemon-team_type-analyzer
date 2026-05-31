@@ -1,1 +1,63 @@
 @import "tailwindcss";
+
+@theme {
+  /* 字體 */
+  --font-sans: "Geist", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* 顏色 */
+  --color-bg: #0b1326;
+  --color-surface: #131b2e;
+  --color-surface-high: #1c2540;
+  --color-surface-bright: #252d42;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.15);
+  --color-text-primary: #dae2fd;
+  --color-text-muted: #8892b0;
+  --color-accent: #4edea3;
+
+  /* 18種屬性顏色 */
+  --color-type-normal: #A8A77A;
+  --color-type-fire: #EE8130;
+  --color-type-water: #6390F0;
+  --color-type-electric: #F7D02C;
+  --color-type-grass: #7AC74C;
+  --color-type-ice: #96D9D6;
+  --color-type-fighting: #C22E28;
+  --color-type-poison: #A33EA1;
+  --color-type-ground: #E2BF65;
+  --color-type-flying: #A98FF3;
+  --color-type-psychic: #F95587;
+  --color-type-bug: #A6B91A;
+  --color-type-rock: #B6A136;
+  --color-type-ghost: #735797;
+  --color-type-dragon: #6F35FC;
+  --color-type-dark: #705746;
+  --color-type-steel: #B7B7CE;
+  --color-type-fairy: #D685AD;
+}
+
+/* 全域基礎樣式 */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 6px rgba(78, 222, 163, 0.3); }
+  50% { box-shadow: 0 0 14px rgba(78, 222, 163, 0.6); }
+}
+
+.btn-export {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.nav-link {
+  transition: opacity 0.2s, background 0.2s;
+}
+
+.nav-link:hover {
+  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.05);
+}
