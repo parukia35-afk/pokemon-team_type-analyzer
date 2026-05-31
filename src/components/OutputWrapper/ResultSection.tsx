@@ -1,4 +1,4 @@
-import typeNameZhTw from "../../data/typeName";
+import TypeBadge from "../TypeBadge";
 
 interface Props {
   title: string;
@@ -21,7 +21,7 @@ const titleColor: Record<string, string> = {
 };
 
 function ResultSection({ title, data, showCount }: Props) {
-  const handledData = Object.entries(data);
+  const handledData = Object.entries(data); // [["fire", 2], ["water", 1]]
 
   return (
     <section className="rounded-2xl border border-white/8 bg-white/[0.03] p-5 h-full">
@@ -45,14 +45,12 @@ function ResultSection({ title, data, showCount }: Props) {
         </div>
       ) : (
         <div className="grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-2.5">
-          {handledData.map(([type, count]) => (
+          {handledData.map(([type, count]) => ( // 解構：將["fire", 2] 拆成變數 type 和 count
             <div
               key={type}
               className="rounded-xl border border-white/8 bg-white/[0.04] p-3 flex flex-col items-center gap-2"
             >
-              <span className="font-mono text-[10px] font-bold tracking-wider text-text-primary">
-                {typeNameZhTw[type]}
-              </span>
+              <TypeBadge type={type} />
               {showCount && (
                 <>
                   <span className="text-xl font-bold text-text-primary">{count}</span>

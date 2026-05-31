@@ -1,3 +1,5 @@
+import typeNameZhTw from "../data/typeName";
+
 interface Props {
   type: string;
   size?: "sm" | "md";
@@ -11,7 +13,7 @@ function TypeBadge({ type, size = "md" }: Props) {
       className={`inline-block rounded font-mono font-bold uppercase tracking-wider text-white ${sizeClass}`}
       style={{ backgroundColor: `var(--color-type-${type})` }}
     >
-      {type}
+      {typeNameZhTw[type]}
     </span>
   );
 }

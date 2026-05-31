@@ -1,6 +1,6 @@
 import { useState } from "react";
 import nameZhToEn from "../../data/pokemonName";
-import typeNameZhTw from "../../data/typeName";
+import TypeBadge from "../TypeBadge";
 
 interface Type {
   name: string;
@@ -100,9 +100,7 @@ function PokemonInput({ index, onUpdate }: Props) {
           <span className="font-mono text-[10px] text-text-muted">查詢中...</span>
         )}
         {!isLoading && type.length > 0 && type.map((en) => (
-          <span key={en} className="font-mono text-[10px] text-text-muted">
-            {typeNameZhTw[en]}
-          </span>
+          <TypeBadge key={en} type={en} size="sm" />
         ))}
         {PMerror && (
           <span className="font-mono text-[10px] text-red-400">{PMerror}</span>
