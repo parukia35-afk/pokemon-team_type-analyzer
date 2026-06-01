@@ -90,5 +90,7 @@ UI 設計稿由 Stitch 輔助生成，程式邏輯規劃與切版皆為自行實
 
 ## 畫面截圖
 
+桌面版截圖：
 ![桌面版](./screenshots/desktop.png)
+手機版截圖：
 ![行動版](./screenshots/mobile.png)
