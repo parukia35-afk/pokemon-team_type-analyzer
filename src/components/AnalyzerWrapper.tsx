@@ -22,7 +22,7 @@ function AnalyzerWrapper() {
   const coverage = coverageTypes(teamMembers)
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden">
+    <div className="flex mobile:flex-col h-screen mobile:h-auto w-screen overflow-hidden">
         <InputWrapper onUpdate={updateTeamMembers}></InputWrapper>
         <OutputWrapper calcResult={calcResult} coverage={coverage}></OutputWrapper>
     </div>

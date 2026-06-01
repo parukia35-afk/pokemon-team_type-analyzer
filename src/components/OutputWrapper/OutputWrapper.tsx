@@ -12,7 +12,7 @@ interface TypeCount {
 
 function OutputWrapper({ calcResult, coverage }: Props) {
   return (
-    <main className="flex-1 h-screen overflow-y-auto px-8 py-7 bg-[radial-gradient(ellipse_at_top_right,_rgba(49,57,77,0.2)_0%,_#0b1326_60%)]">
+    <main className="flex-1 h-screen mobile:h-auto overflow-y-auto px-8 mobile:px-4 py-7 bg-[radial-gradient(ellipse_at_top_right,_rgba(49,57,77,0.2)_0%,_#0b1326_60%)] flex flex-col">
 
       {/* Header */}
       <header className="flex justify-between items-end mb-7">
@@ -27,14 +27,14 @@ function OutputWrapper({ calcResult, coverage }: Props) {
       </header>
 
       {/* Result Grid */}
-      <div className="grid grid-cols-3 gap-4">
-        <div className="col-span-2">
+      <div className="grid grid-cols-3 mobile:grid-cols-1 gap-4 flex-1 mobile:flex-none">
+        <div className="col-span-2 mobile:col-span-1">
           <ResultSection title="弱點" data={calcResult.weakCount} showCount={true} />
         </div>
         <div className="col-span-1">
           <ResultSection title="免疫" data={calcResult.immuneCount} showCount={true} />
         </div>
-        <div className="col-span-2">
+        <div className="col-span-2 mobile:col-span-1">
           <ResultSection title="抗性" data={calcResult.resistCount} showCount={true} />
         </div>
         <div className="col-span-1">

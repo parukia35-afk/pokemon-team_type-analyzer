@@ -63,3 +63,5 @@ body {
   opacity: 0.8;
   background: rgba(255, 255, 255, 0.05);
 }
+
+@custom-variant mobile (@media (width < 870px));

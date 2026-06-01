@@ -24,7 +24,7 @@ function ResultSection({ title, data, showCount }: Props) {
   const handledData = Object.entries(data); // [["fire", 2], ["water", 1]]
 
   return (
-    <section className="rounded-2xl border border-white/8 bg-white/[0.03] p-5 h-full">
+    <section className="rounded-2xl border border-white/8 bg-white/[0.03] p-5 h-full mobile:h-auto">
       
       {/* Section Header */}
       <div className="flex items-center justify-between mb-4">
